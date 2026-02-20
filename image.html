@@ -15,7 +15,7 @@
   <!-- Fullscreen AR scene -->
   <a-scene mindar-image="imageTargetSrc: ./assets/targets.mind; maxTrack: 1" color-space="sRGB"
     renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
-    device-orientation-permission-ui="enabled: false" class="border border-blue-800 border-72">
+    device-orientation-permission-ui="enabled: false" class="border border-blue-800 border-16 sm:border-72">
     <a-assets>
       <a-asset-item id="lyreModel" src="./assets/lyre.glb"></a-asset-item>
       <a-asset-item id="greekPersonModel" src="./assets/greek_person.glb"></a-asset-item>
@@ -49,7 +49,7 @@
 
   <!-- Overlay UI layer -->
   <div class="absolute top-0 left-0 w-screen h-screen pointer-events-none z-10">
-    <div class="absolute inset-0 border-64 border-blue-100 flex justify-between items-start pointer-events-auto">
+    <div class="absolute inset-0 border-12 sm:border-64 border-blue-100 flex justify-between items-start pointer-events-auto">
 
       <!-- Left pillar -->
       <div class="w-8 h-full">
@@ -63,9 +63,9 @@
       </div>
 
       <!-- Top navigation & buttons -->
-      <div class="absolute top-0 left-0 flex justify-between w-full px-12 py-4 pointer-events-auto">
-        <a href="javascript:history.back()" class="hover:underline px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">← Terug</a>
-        <button id="downloadMarkers" class="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-700">
+      <div class="absolute top-0 left-0 flex flex-col sm:flex-row gap-2 justify-between w-full px-12 py-4 pointer-events-auto">
+        <a href="javascript:history.back()" class="hover:underline px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">← Back</a>
+        <button id="downloadMarkers" class="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-700 text-left">
           Download markers
         </button>
       </div>
