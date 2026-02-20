@@ -4,11 +4,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mind AR</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Mind AR - Greek Theme</title>
 </head>
 
-<body>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-white font-serif">
+  <div class="relative flex items-center justify-center w-full max-w-4xl px-8">
+    <!-- Left pillar -->
+    <div class="flex-shrink-0 w-10 h-full">
+      <svg class="w-full h-full" viewBox="0 0 40 600" preserveAspectRatio="none">
+        <rect x="0" y="0" width="40" height="600" rx="8" ry="8" class="fill-white stroke-blue-800 stroke-4"></rect>
+        <line x1="5" y1="0" x2="5" y2="600" class="stroke-blue-800 stroke-1"></line>
+        <line x1="15" y1="0" x2="15" y2="600" class="stroke-blue-800 stroke-1"></line>
+        <line x1="25" y1="0" x2="25" y2="600" class="stroke-blue-800 stroke-1"></line>
+        <line x1="35" y1="0" x2="35" y2="600" class="stroke-blue-800 stroke-1"></line>
+      </svg>
+    </div>
 
+    <!-- Frame container -->
+    <div
+      class="flex flex-col items-center gap-6 bg-white/80 backdrop-blur-md border-4 border-blue-800 rounded-xl shadow-lg px-8 py-12 mx-4 w-full max-w-lg">
+      <h1 class="text-4xl font-bold text-blue-900 text-center">Mind AR Greek</h1>
+      <div class="flex gap-4">
+        <a href="./image.html" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-6 rounded">Image
+          Tracking</a>
+        <a href="./face.html"
+          class="bg-white hover:bg-blue-100 text-blue-800 font-bold py-2 px-6 rounded border-2 border-blue-800">Face
+          Tracking</a>
+      </div>
+      <a target="_blank" href="https://www.meesakveld.be" class="text-sm text-gray-600 mt-4">
+        By
+        <span class="hover:underline text-blue-800">
+          Mees Akveld
+        </span>
+      </a>
+    </div>
+
+    <!-- Right pillar -->
+    <div class="flex-shrink-0 w-10 h-full">
+      <svg class="w-full h-full" viewBox="0 0 40 600" preserveAspectRatio="none">
+        <rect x="0" y="0" width="40" height="600" rx="8" ry="8" class="fill-white stroke-blue-800 stroke-4"></rect>
+        <line x1="5" y1="0" x2="5" y2="600" class="stroke-blue-800 stroke-1"></line>
+        <line x1="15" y1="0" x2="15" y2="600" class="stroke-blue-800 stroke-1"></line>
+        <line x1="25" y1="0" x2="25" y2="600" class="stroke-blue-800 stroke-1"></line>
+        <line x1="35" y1="0" x2="35" y2="600" class="stroke-blue-800 stroke-1"></line>
+      </svg>
+    </div>
+  </div>
 </body>
 
 </html>

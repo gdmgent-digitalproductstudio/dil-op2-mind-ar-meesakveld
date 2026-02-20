@@ -4,11 +4,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Tracking | Mind AR</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <title>Face Tracking | Mind AR</title>
 </head>
 
-<body>
+<body class="h-screen w-screen overflow-hidden bg-gradient-to-b from-blue-100 to-white font-serif">
+  <!-- Fullscreen AR scene -->
+  <a-scene mindar-image="imageTargetSrc: ./assets/targets.mind; maxTrack: 1" color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false" class="border border-blue-800 border-72">
+    <a-assets>
+      <a-asset-item id="lyreModel" src="./assets/lyre.glb"></a-asset-item>
+      <a-asset-item id="greekPersonModel" src="./assets/greek_person.glb"></a-asset-item>
+      <a-asset-item id="parthenonModel" src="./assets/parthenon.glb"></a-asset-item>
+      <a-asset-item id="spartanHelmetModel" src="./assets/spartan_helmet.glb"></a-asset-item>
+    </a-assets>
 
+    <!-- MindAR camera -->
+    <a-camera mindar-camera></a-camera>
+
+    <!-- Target 0 -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      <a-entity gltf-model="#parthenonModel" position="0 0 0" rotation="0 45 35" scale="0.05 0.05 0.05"></a-entity>
+    </a-entity>
+
+    <!-- Target 1 -->
+    <a-entity mindar-image-target="targetIndex: 1">
+      <a-entity gltf-model="#spartanHelmetModel" position="0 0 0" rotation="0 0 0" scale="0.01 0.01 0.01"></a-entity>
+    </a-entity>
+
+    <!-- Target 2 -->
+    <a-entity mindar-image-target="targetIndex: 2">
+      <a-entity gltf-model="#greekPersonModel" position="0 0 0" rotation="0 0 0" scale="2 2 2"></a-entity>
+    </a-entity>
+
+    <!-- Target 3 -->
+    <a-entity mindar-image-target="targetIndex: 3">
+      <a-entity gltf-model="#lyreModel" position="0 -1 0" rotation="0 0 0" scale="4 4 4"></a-entity>
+    </a-entity>
+  </a-scene>
+
+  <!-- Overlay UI layer -->
+  <div class="absolute top-0 left-0 w-screen h-screen pointer-events-none z-10">
+    <div class="absolute inset-0 border-64 border-blue-100 flex justify-between items-start pointer-events-auto">
+
+      <!-- Left pillar -->
+      <div class="w-8 h-full">
+        <svg class="w-full h-full" viewBox="0 0 40 600" preserveAspectRatio="none">
+          <rect x="0" y="0" width="40" height="600" rx="8" ry="8" class="fill-blue-100 stroke-blue-800 stroke-4"></rect>
+          <line x1="5" y1="0" x2="5" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="15" y1="0" x2="15" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="25" y1="0" x2="25" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="35" y1="0" x2="35" y2="600" class="stroke-blue-800 stroke-1"></line>
+        </svg>
+      </div>
+
+      <!-- Top navigation & buttons -->
+      <div class="absolute top-0 left-0 flex justify-between w-full px-12 py-4 pointer-events-auto">
+        <a href="/" class="hover:underline px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">← Terug</a>
+        <button id="downloadMarkers" class="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-700">
+          Download markers
+        </button>
+      </div>
+
+      <!-- Right pillar -->
+      <div class="w-8 h-full absolute right-0 top-0">
+        <svg class="w-full h-full" viewBox="0 0 40 600" preserveAspectRatio="none">
+          <rect x="0" y="0" width="40" height="600" rx="8" ry="8" class="fill-blue-100 stroke-blue-800 stroke-4"></rect>
+          <line x1="5" y1="0" x2="5" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="15" y1="0" x2="15" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="25" y1="0" x2="25" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="35" y1="0" x2="35" y2="600" class="stroke-blue-800 stroke-1"></line>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JS file -->
+  <script src="./scripts/image.js"></script>
 </body>
 
 </html>

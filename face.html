@@ -4,11 +4,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/main.css">
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-face-aframe.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <title>Face Tracking | Mind AR</title>
 </head>
 
-<body>
+<body class="h-screen w-screen overflow-hidden bg-gradient-to-b from-blue-100 to-white font-serif">
+  <!-- Fullscreen AR scene -->
+  <a-scene class="fixed top-0 left-0 w-screen h-screen border border-blue-800 border-72" mindar-face="autoStart: true"
+    renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false" embedded color-space="sRGB">
 
+    <!-- Assets -->
+    <a-assets>
+      <a-asset-item id="crownModel" src="./assets/crown.glb"></a-asset-item>
+      <a-asset-item id="beardModel" src="./assets/beard.glb"></a-asset-item>
+      <a-asset-item id="faceOccluder"
+        src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/assets/face-occluder.glb"></a-asset-item>
+    </a-assets>
+
+    <!-- Camera -->
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- Lights -->
+    <a-light type="ambient" color="#ffffff" intensity="0.7"></a-light>
+    <a-light type="directional" color="#ffffff" intensity="1.5" position="0 1 1"></a-light>
+    <a-light type="directional" color="#ffffff" intensity="0.6" position="1 0.5 0.5"></a-light>
+    <a-light type="directional" color="#ffffff" intensity="0.5" position="0 2 0.5"></a-light>
+
+    <!-- Face anchor -->
+    <a-entity mindar-face-target="anchorIndex: 1">
+      <a-gltf-model src="#faceOccluder" scale="1.6 1.6 1.6" material="colorWrite: false"></a-gltf-model>
+      <a-entity gltf-model="#crownModel" position="0 0.6 -0.9" rotation="0 90 -10" scale="0.25 0.25 0.25"></a-entity>
+    </a-entity>
+
+    <!-- Beard anchor -->
+    <a-entity mindar-face-target="anchorIndex: 152">
+      <a-gltf-model src="#faceOccluder" material="colorWrite: false"></a-gltf-model>
+      <a-entity id="beard" gltf-model="#beardModel" position="0 -0.675 0" rotation="0 0 0" scale="1.1 1.1 1.1"></a-entity>
+    </a-entity>
+
+  </a-scene>
+
+  <!-- Overlay UI layer -->
+  <div class="absolute top-0 left-0 w-screen h-screen pointer-events-none z-10">
+    <div class="absolute inset-0 border-64 border-blue-100 flex justify-between items-start pointer-events-auto">
+
+      <!-- Left pillar -->
+      <div class="w-8 h-full">
+        <svg class="w-full h-full" viewBox="0 0 40 600" preserveAspectRatio="none">
+          <rect x="0" y="0" width="40" height="600" rx="8" ry="8" class="fill-blue-100 stroke-blue-800 stroke-4"></rect>
+          <line x1="5" y1="0" x2="5" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="15" y1="0" x2="15" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="25" y1="0" x2="25" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="35" y1="0" x2="35" y2="600" class="stroke-blue-800 stroke-1"></line>
+        </svg>
+      </div>
+
+      <!-- Top navigation & buttons -->
+      <div class="absolute top-0 left-0 flex justify-between w-full px-12 py-4 pointer-events-auto">
+        <a href="/" class="hover:underline px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-500">← Terug</a>
+        <button id="toggleBeard" class="px-4 py-2 bg-blue-800 text-white rounded hover:bg-blue-700">
+          Disable beard
+        </button>
+      </div>
+
+      <!-- Right pillar -->
+      <div class="w-8 h-full absolute right-0 top-0">
+        <svg class="w-full h-full" viewBox="0 0 40 600" preserveAspectRatio="none">
+          <rect x="0" y="0" width="40" height="600" rx="8" ry="8" class="fill-blue-100 stroke-blue-800 stroke-4"></rect>
+          <line x1="5" y1="0" x2="5" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="15" y1="0" x2="15" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="25" y1="0" x2="25" y2="600" class="stroke-blue-800 stroke-1"></line>
+          <line x1="35" y1="0" x2="35" y2="600" class="stroke-blue-800 stroke-1"></line>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Separate JS file -->
+  <script src="./scripts/face.js"></script>
 </body>
 
 </html>
